@@ -285,11 +285,16 @@ Json::Json(int value)                  : m_ptr(make_shared<JsonInt>(value)) {}
 Json::Json(bool value)                 : m_ptr(value ? statics().t : statics().f) {}
 Json::Json(string const& value)        : m_ptr(make_shared<JsonString>(value)) {}
 Json::Json(string &&value)             : m_ptr(make_shared<JsonString>(move(value))) {}
-Json::Json(char const* value)         : m_ptr(make_shared<JsonString>(value)) {}
+Json::Json(char const* value)          : m_ptr(make_shared<JsonString>(value)) {}
 Json::Json(Json::array const& values)  : m_ptr(make_shared<JsonArray>(values)) {}
 Json::Json(Json::array &&values)       : m_ptr(make_shared<JsonArray>(move(values))) {}
 Json::Json(Json::object const& values) : m_ptr(make_shared<JsonObject>(values)) {}
 Json::Json(Json::object &&values)      : m_ptr(make_shared<JsonObject>(move(values))) {}
+
+Json::Json(const string_view& value) :
+	Json	( std::string(value) )
+{
+}
 
 /* * * * * * * * * * * * * * * * * * * *
  * Accessors

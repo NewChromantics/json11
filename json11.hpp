@@ -117,6 +117,7 @@ public:
     string_view to show familirity */
     Json(std::string const& value); // STRING
     Json(std::string &&value);      // STRING
+    Json(const std::string_view& value);	// STRING
     Json(char const * value);       // STRING
     Json(array const& values);      // ARRAY
     Json(array &&values);           // ARRAY
